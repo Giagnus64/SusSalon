@@ -1,0 +1,23 @@
+<% if @errors %>
+  <div id="error_explanation">
+    <ul>
+    <% @errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @client do |f| %>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+<%= f.label :age %>
+<%= f.text_field :age %>
+
+<%= f.label :gender%>
+<%= f.text_field :gender%>
+
+<%= f.submit %>
+<% end %>

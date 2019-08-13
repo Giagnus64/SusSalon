@@ -1,0 +1,9 @@
+<h1>Appointments Page</h1>
+
+<% @appointments.each do |appointment|%>
+<div class="appointment-container">
+    <h2><%= link_to appointment.client.name , appointment.client %> has an appointment with <%= link_to appointment.stylist.name, appointment.stylist %> at <%= appointment.time %>PM</h2>
+    <h3><%= link_to "See Appointment", appointment%></h3>
+</div>
+<br>
+<% end %>

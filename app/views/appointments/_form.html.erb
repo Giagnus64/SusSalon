@@ -1,0 +1,24 @@
+<% if @errors %>
+  <div id="error_explanation">
+    <ul>
+    <% @errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @appointment do |f| %>
+
+<%= f.label :time %>
+<%= f.number_field :time %>
+
+
+ <%= f.label :client_id, "Client" %>
+ <%=f.collection_select(:client_id, @clients, :id, :name)%>
+
+ <%= f.label :stylist_id, "Stylist" %>
+ <%= f.collection_select(:stylist_id, @stylists, :id, :name, prompt:true) %>
+
+<%= f.submit %>
+<% end %>

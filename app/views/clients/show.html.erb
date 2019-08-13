@@ -1,0 +1,9 @@
+<div class="client-container">
+    <h2><%=@client.name%></h2>
+    <h4>Age: <%= @client.age %></h4>
+    <h4>Gender: <%= @client.gender %></h4>
+    </div>
+
+<%= link_to "Edit Client", edit_client_path(@client) %>
+<br><br>
+<%= button_to "Delete Client", {action: "destroy", id: @client.id}, method: :delete, data: {confirm: "Delete client and appointments?"} %>

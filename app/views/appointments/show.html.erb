@@ -1,0 +1,7 @@
+<div class="appointment-container">
+    <h2><%= link_to @appointment.client.name, @appointment.client %> has an appointment with <%= link_to @appointment.stylist.name, @appointment.stylist %> at <%= @appointment.time %> PM</h2>
+</div>
+
+<%= link_to "Edit Appointment", edit_appointment_path(@appointment) %>
+<br><br>
+<%= button_to "Delete Appointment", {action: "destroy", id: @appointment.id}, method: :delete, data: {confirm: "Delete Appointment?"} %>

@@ -1,0 +1,8 @@
+<div class="stylist-container">
+    <h2><%=@stylist.name%></h2>
+    <h4>Specialty: <%= @stylist.specialty%></h4>
+    </div>
+
+    <%= link_to "Edit Stylist", edit_stylist_path(@stylist) %>
+<br><br>
+<%= button_to "Delete Stylist", {action: "destroy", id: @stylist.id}, method: :delete, data: {confirm: "Delete stylist and appointments?"} %>

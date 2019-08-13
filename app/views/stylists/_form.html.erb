@@ -1,0 +1,20 @@
+<% if @errors %>
+  <div id="error_explanation">
+    <ul>
+    <% @errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @stylist do |f| %>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+<%= f.label :specialty %>
+<%= f.text_field :specialty %>
+
+<%= f.submit %>
+<% end %>

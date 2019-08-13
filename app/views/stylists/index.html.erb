@@ -1,0 +1,9 @@
+<h1>Stylists Page</h1>
+
+<% @stylists.each do |stylist| %>
+    <div class="stylist-container">
+    <h2><%= link_to stylist.name, stylist %></h2>
+    <h4>Specialty: <%= stylist.specialty%></h4>
+    </div>
+<% end %>
+
