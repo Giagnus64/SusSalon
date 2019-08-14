@@ -5,6 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+
+Client.destroy_all
+Stylist.destroy_all
+Appointment.destroy_all
 cli1 = Client.create({
     name: 'Bub', 
     gender: 'Male',
@@ -20,6 +25,14 @@ cli3 = Client.create({
     gender: 'Non-Binary',
     age: 28
 })
+
+5.times do 
+    Client.create(
+        name: Faker::Name.name,
+        gender: Faker::Gender.type,
+        age: Faker::Number.within(range: 18..80)
+    )
+end
 
 sty1 = Stylist.create({
     name:"Annie", 
@@ -50,3 +63,4 @@ appt4 = Appointment.create({
     client_id: cli3.id, 
     time: 5
 })
+

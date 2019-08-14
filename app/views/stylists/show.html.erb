@@ -3,6 +3,37 @@
     <h4>Specialty: <%= @stylist.specialty%></h4>
     </div>
 
-    <%= link_to "Edit Stylist", edit_stylist_path(@stylist) %>
+<%= link_to "Edit Stylist", edit_stylist_path(@stylist) %>
 <br><br>
 <%= button_to "Delete Stylist", {action: "destroy", id: @stylist.id}, method: :delete, data: {confirm: "Delete stylist and appointments?"} %>
+
+<h2>Appointments:</h2>
+
+<% @stylist.appointments.each do |appt| %>
+    <% if appt.time != nil %>
+    <p><%= link_to "#{appt.time} PM with #{appt.client.name}", appt%></p>
+    <% end %>
+<% end %>
+
+<h2>Make a New Appointment:</h2>
+<% if flash[:errors] %>
+  <div id="error_explanation">
+    <ul>
+    <% flash[:errors].each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @appointment do |f| %>
+
+<%= f.label :time %>
+<%= f.number_field :time %>
+
+<%= f.label :client_id, "Client" %>
+<%=f.collection_select(:client_id, @clients, :id, :name)%>
+
+
+<%= f.submit %>
+<% end %>
