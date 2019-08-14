@@ -6,7 +6,8 @@ class StylistsController < ApplicationController
     end
     
     def show
-    
+    @clients = Client.all 
+    @appointment = @stylist.appointments.new()
     end
     
     def new
@@ -18,8 +19,8 @@ class StylistsController < ApplicationController
         if @stylist.valid?
             redirect_to(@stylist)
         else 
-            @errors = @stylist.errors
-            render :new
+            flash[:errors] = @stylist.errors.full_messages
+            redirect_to(new_stylist_path)
         end
     end
 
@@ -31,14 +32,12 @@ class StylistsController < ApplicationController
         if @stylist.valid?
             redirect_to(@stylist)
         else 
-            @errors = @stylist.errors
-            find_stylist
-            render :edit
+            flash[:errors] = @stylist.errors.full_messages
+            redirect_to(edit_stylist_path)
         end
     end
 
     def destroy
-        @stylist.appointments.destroy_all
         @stylist.destroy
         redirect_to(appointments_path)
     end

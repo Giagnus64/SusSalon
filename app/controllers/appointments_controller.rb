@@ -22,8 +22,8 @@ class AppointmentsController < ApplicationController
         if @appointment.valid?
             redirect_to(@appointment)
         else 
-            @errors = @appointment.errors
-            render :new
+            flash[:errors] = @appointment.errors.full_messages
+            redirect_to(new_appointment_path)
         end
     end
 
@@ -39,9 +39,8 @@ class AppointmentsController < ApplicationController
         if @appointment.valid?
             redirect_to(@appointment)
         else 
-            @errors = @appointment.errors
-            find_appointment
-            render :edit
+            flash[:errors] = @appointment.errors.full_messages
+            redirect_to(edit_appointment_path)
         end
     end
 

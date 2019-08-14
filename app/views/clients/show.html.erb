@@ -7,3 +7,32 @@
 <%= link_to "Edit Client", edit_client_path(@client) %>
 <br><br>
 <%= button_to "Delete Client", {action: "destroy", id: @client.id}, method: :delete, data: {confirm: "Delete client and appointments?"} %>
+
+<% @client.appointments.each do |appt| %>
+    <% if appt.time != nil %>
+    <p><%= link_to "#{appt.time} PM with #{appt.stylist.name}", appt%></p>
+    <% end %>
+<% end %>
+
+<h2>Make a New Appointment:</h2>
+<% if flash[:errors] %>
+  <div id="error_explanation">
+    <ul>
+    <% flash[:errors].each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @appointment do |f| %>
+
+<%= f.label :time %>
+<%= f.number_field :time %>
+
+<%= f.label :stylist_id, "Stylist" %>
+<%=f.collection_select(:stylist_id, @stylists, :id, :name)%>
+
+
+<%= f.submit %>
+<% end %>
